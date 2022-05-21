@@ -1,6 +1,13 @@
 var connected = false;
 
-var socket = io("http://localhost:3003")
+var socketUrl = "https://comforting-tulumba-af1f69.netlify.app/"; // ADD YOUR HOSTED URL HERE
+ 
+if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+    // If in localhost, use this url
+    socketUrl = "http://localhost:3003";
+}
+ 
+var socket = io(socketUrl);
 socket.emit("setup", userLoggedIn);
 
 socket.on("connected", () => connected = true);
